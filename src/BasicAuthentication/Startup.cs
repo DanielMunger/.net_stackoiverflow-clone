@@ -34,6 +34,7 @@ namespace BasicAuthentication
         public void Configure(IApplicationBuilder app)
         {
             app.UseIdentity();
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
