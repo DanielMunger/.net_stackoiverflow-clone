@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model BasicAuthentication.Models.Post
+<h1>this is postindex</h1>
+<div>
+@using (Html.BeginForm())
+
+{
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title)
+        <br />
+        <br />
+        @Html.LabelFor(model => model.Content)
+        @Html.TextAreaFor(model => model.Content)
+        <br /><input type="submit" value="Post"/>
+}
+</div>

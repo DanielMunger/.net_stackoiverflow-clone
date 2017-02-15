@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<BasicAuthentication.Models.Post>
+<h1>These are some posts or whatever</h1>
+@foreach(var post in Model)
+{
+    <h3>@post.Title</h3>
+    @if (@post.User.UserName != null)
+    {
+    <h4>by @post.User.UserName</h4>
+    }
+}

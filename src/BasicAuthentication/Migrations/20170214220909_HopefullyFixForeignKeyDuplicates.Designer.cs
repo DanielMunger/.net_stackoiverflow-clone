@@ -8,9 +8,10 @@ using BasicAuthentication.Models;
 namespace BasicAuthentication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170214220909_HopefullyFixForeignKeyDuplicates")]
+    partial class HopefullyFixForeignKeyDuplicates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -27,7 +28,9 @@ namespace BasicAuthentication.Migrations
 
                     b.Property<int?>("PostId");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.Property<int>("Votes");
 
@@ -35,7 +38,7 @@ namespace BasicAuthentication.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Answers");
                 });
@@ -100,13 +103,15 @@ namespace BasicAuthentication.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.Property<int>("Votes");
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Posts");
                 });
@@ -226,14 +231,14 @@ namespace BasicAuthentication.Migrations
 
                     b.HasOne("BasicAuthentication.Models.ApplicationUser", "User")
                         .WithMany("Answers")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("BasicAuthentication.Models.Post", b =>
                 {
                     b.HasOne("BasicAuthentication.Models.ApplicationUser", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
